@@ -1,7 +1,7 @@
 package heylichen.levenauto;
 
-import heylichen.levenauto.matcher.LevenshteinDistanceMatcher;
-import heylichen.levenauto.matcher.SparseLevenshteinDistanceMatcher;
+import heylichen.levenauto.encapsulated.LevenshteinAutomata;
+import heylichen.levenauto.encapsulated.SparseLevenshteinAutomata;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -19,7 +19,7 @@ public class SparseMatcherTest extends BaseLevenshteinDistanceMatcherTest {
   }
 
   @Override
-  protected LevenshteinDistanceMatcher newMatcher() {
-    return new SparseLevenshteinDistanceMatcher("woof", 2);
+  protected LevenshteinAutomata newMatcher() {
+    return new SparseLevenshteinAutomata("woof", 2);
   }
 }

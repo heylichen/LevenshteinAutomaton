@@ -1,17 +1,17 @@
 package heylichen.levenauto;
 
-import heylichen.levenauto.matcher.LevenshteinDistanceMatcher;
+import heylichen.levenauto.encapsulated.LevenshteinAutomata;
 
 public abstract class BaseLevenshteinDistanceMatcherTest {
 
   protected boolean match(String input) {
-    LevenshteinDistanceMatcher lm = newMatcher();
+    LevenshteinAutomata lm = newMatcher();
     return canMatch(lm, input);
   }
 
-  protected abstract LevenshteinDistanceMatcher newMatcher();
+  protected abstract LevenshteinAutomata newMatcher();
 
-  private boolean canMatch(LevenshteinDistanceMatcher lm, String input) {
+  private boolean canMatch(LevenshteinAutomata lm, String input) {
     int i = 0;
     for (; i < input.length() && lm.canMatch(); i++) {
       lm.step(input.charAt(i));

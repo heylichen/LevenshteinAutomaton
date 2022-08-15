@@ -8,15 +8,15 @@ public class TestAutomatonSparseLevenshtein {
   //not really a test, just to print automaton dot
   @Test
   public void testGenDot() {
-    SparseLevenshteinAutomatonCore lm = new SparseLevenshteinAutomatonCore("woof", 1);
-    SparseLevenshteinAutomaton ta = new SparseLevenshteinAutomaton(lm);
+    SparseLevenshteinAutomata lm = new SparseLevenshteinAutomata("woof", 1);
+    SparseLevenshteinAutomataDFA ta = new SparseLevenshteinAutomataDFA(lm);
     System.out.println(ta.printDot());
   }
 
   @Test
   public void testMatch() {
-    SparseLevenshteinAutomatonCore lm = new SparseLevenshteinAutomatonCore("woof", 2);
-    SparseLevenshteinAutomaton ta = new SparseLevenshteinAutomaton(lm);
+    SparseLevenshteinAutomata lm = new SparseLevenshteinAutomata("woof", 2);
+    SparseLevenshteinAutomataDFA ta = new SparseLevenshteinAutomataDFA(lm);
 
     Assert.assertTrue(ta.match("xoof"));
     Assert.assertTrue(ta.match("1xoof"));
@@ -29,15 +29,15 @@ public class TestAutomatonSparseLevenshtein {
 
   @Test
   public void testNotMatchEmpty() {
-    SparseLevenshteinAutomatonCore lm = new SparseLevenshteinAutomatonCore("woof", 2);
-    SparseLevenshteinAutomaton ta = new SparseLevenshteinAutomaton(lm);
+    SparseLevenshteinAutomata lm = new SparseLevenshteinAutomata("woof", 2);
+    SparseLevenshteinAutomataDFA ta = new SparseLevenshteinAutomataDFA(lm);
     Assert.assertFalse(ta.match(null));
   }
 
   @Test
   public void testMatchEmpty() {
-    SparseLevenshteinAutomatonCore lm = new SparseLevenshteinAutomatonCore("wo", 2);
-    SparseLevenshteinAutomaton ta = new SparseLevenshteinAutomaton(lm);
+    SparseLevenshteinAutomata lm = new SparseLevenshteinAutomata("wo", 2);
+    SparseLevenshteinAutomataDFA ta = new SparseLevenshteinAutomataDFA(lm);
     Assert.assertTrue(ta.match(null));
   }
 }
