@@ -1,25 +1,21 @@
 package heylichen.levenauto;
 
-import heylichen.levenauto.encapsulated.LevenshteinAutomata;
-import heylichen.levenauto.encapsulated.RowLevenshteinAutomata;
-import org.junit.Assert;
 import org.junit.Test;
 
-public class RowLevenshteinAutomataTest extends BaseLevenshteinDistanceMatcherTest {
+import java.util.List;
+
+public class RowLevenshteinAutomataTest {
 
   @Test
-  public void testMatch() {
-    Assert.assertTrue(match("xoof"));
-    Assert.assertTrue(match("1xoof"));
-    Assert.assertFalse(match("11xoof"));
+  public void testCanMatch() {
+    LevenshteinAutomata<List<Integer>> la = new RowLevenshteinAutomata("banana", 1);
+    List<Integer> state = la.getStartState();
 
-    Assert.assertTrue(match("oof"));
-    Assert.assertTrue(match("of"));
-    Assert.assertFalse(match("f"));
-  }
-
-  @Override
-  protected LevenshteinAutomata newMatcher() {
-    return new RowLevenshteinAutomata("woof", 2);
+    state = la.step(state, 'w');
+    // True, "w" can match "bannana" with distance 1
+    System.out.println(la.canMatch(state));
+    state = la.step(state, 'o');
+    //False, "wo" can't match "bannana" with distance 1
+    System.out.println(la.canMatch(state));
   }
 }

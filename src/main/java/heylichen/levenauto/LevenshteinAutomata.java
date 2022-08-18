@@ -1,6 +1,9 @@
 package heylichen.levenauto;
 
+import java.util.Collection;
 
+// by heylichen@qq.com
+// T is type of State, for example List<Integer>
 public interface LevenshteinAutomata<T> {
   T getStartState();
 
@@ -10,5 +13,5 @@ public interface LevenshteinAutomata<T> {
 
   boolean canMatch(T state);
 
-  Iterable<Character> transitions(T state);
+  Collection<Character> transitions(T state);
 }

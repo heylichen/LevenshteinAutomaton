@@ -8,6 +8,7 @@ public class RowLevenshteinAutomata implements LevenshteinAutomata<List<Integer>
   private final List<Integer> startState;
   private final String string;
   private final int maxEdits;
+  private final Integer MAX_EDITS_PLUS_1;
 
   @Override
   public List<Integer> getStartState() {
@@ -23,6 +24,7 @@ public class RowLevenshteinAutomata implements LevenshteinAutomata<List<Integer>
     }
     this.startState = localState;
     this.maxEdits = maxEdits;
+    MAX_EDITS_PLUS_1 = maxEdits + 1;
   }
 
   @Override
@@ -40,7 +42,13 @@ public class RowLevenshteinAutomata implements LevenshteinAutomata<List<Integer>
       dist = Math.min(dist, newState.get(i) + 1);
       newState.add(dist);
     }
-    return newState;
+    //to make state value finite
+    List<Integer> normalizedNewState  = new ArrayList<>(newState.size());
+    for (Integer integer : newState) {
+      integer = integer > maxEdits ? MAX_EDITS_PLUS_1 : integer;
+      normalizedNewState.add(integer);
+    }
+    return normalizedNewState;
   }
 
   @Override
